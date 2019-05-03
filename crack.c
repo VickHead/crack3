@@ -8,7 +8,7 @@
 
 const int PASS_LEN=50;        // Maximum any password can be
 const int HASH_LEN=33;        // Length of MD5 hash strings
-
+char *contents;
 
 // Stucture to hold both a plaintext password and a hash.
 struct entry 
@@ -52,7 +52,7 @@ struct entry *read_dictionary(char *filename, int *size)
         exit(1);
     }
     
-    char *contents = malloc(filelength);
+    contents = malloc(filelength);
     fread(contents, 1, filelength, c);
     fclose(c);
     
@@ -135,7 +135,7 @@ int main(int argc, char *argv[])
     {
         free(dict[i].hash);
     }
-    //free(needToFree);
+    free(contents);
     free(dict);
     fclose(h);
 }
