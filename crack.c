@@ -38,10 +38,7 @@ int hashfind(const void *target, const void *elem)
     return strcmp(target_str, (*helem).hash);
 }
 
-// TODO
 // Read in the dictionary file and return an array of structs.
-// Each entry should contain both the hash and the dictionary
-// word.
 struct entry *read_dictionary(char *filename, int *size)
 {
     int filelength = file_length(filename);
@@ -96,16 +93,14 @@ int main(int argc, char *argv[])
         exit(1);
     }
 
-    // TODO: Read the dictionary file into an array of entry structures
+    // Read the dictionary file into an array of entry structures
     int dlen;
     struct entry *dict = read_dictionary(argv[2], &dlen);
     struct entry *needToFree = dict;
     
-    // TODO: Sort the hashed dictionary using qsort.
-    // You will need to provide a comparison function.
+    // Sort the hashed dictionary using qsort.
     qsort(dict, dlen, sizeof(struct entry), hashcomp);
 
-    // TODO
     // Open the hash file for reading.
     FILE *h = fopen(argv[1], "r");
     if (!h)
@@ -114,12 +109,8 @@ int main(int argc, char *argv[])
         exit(1);
     }
 
-    // TODO
-    // For each hash, search for it in the dictionary using
-    // binary search.
-    // If you find it, get the corresponding plaintext dictionary word.
-    // Print out both the hash and word.
-    // Need only one loop. (Yay!)
+    // Search for each hash in the dictionary using binary search.
+    // If found, print out both the hash and word.
     char line[HASH_LEN];
     while (fgets(line, HASH_LEN, h) != NULL)
     {
