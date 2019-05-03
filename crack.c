@@ -96,7 +96,6 @@ int main(int argc, char *argv[])
     // Read the dictionary file into an array of entry structures
     int dlen;
     struct entry *dict = read_dictionary(argv[2], &dlen);
-    struct entry *needToFree = dict;
     
     // Sort the hashed dictionary using qsort.
     qsort(dict, dlen, sizeof(struct entry), hashcomp);
